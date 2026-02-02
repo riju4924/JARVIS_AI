@@ -1,2 +1,6 @@
-git add .
-git commit -m "Initial commit: AI-powered Jarvis voice assistant"
+SpeechRecognition
+pyttsx3
+pyaudio
+scikit-learn
+joblib
+openai
