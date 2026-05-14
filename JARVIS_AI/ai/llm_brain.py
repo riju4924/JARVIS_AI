@@ -1,3 +1,4 @@
+import logging
 import os
 
 from openai import OpenAI
@@ -17,6 +18,7 @@ def _resolve_api_key():
 
 
 OPENAI_API_KEY = _resolve_api_key()
+LOGGER = logging.getLogger(__name__)
 _CLIENT = None
 
 
@@ -46,7 +48,7 @@ def ask_llm(user_input: str) -> str:
             temperature=0.6,
         )
     except Exception as exc:
-        print(f"⚠️ Failed to get LLM response: {exc}")
+        LOGGER.exception("Failed to get LLM response", exc_info=exc)
         return "Sorry, I couldn't get an AI response right now."
 
     return response.choices[0].message.content
