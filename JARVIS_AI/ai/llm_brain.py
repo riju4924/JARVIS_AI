@@ -1,5 +1,13 @@
+import os
+
 from openai import OpenAI
-from utils.config import OPENAI_API_KEY
+
+try:
+    from utils.config import OPENAI_API_KEY as CONFIG_API_KEY
+except ModuleNotFoundError:
+    CONFIG_API_KEY = ""
+
+OPENAI_API_KEY = (os.getenv("OPENAI_API_KEY") or CONFIG_API_KEY).strip()
 
 SYSTEM_PROMPT = """
 You are Jarvis, a smart, calm, helpful AI assistant.
