@@ -91,20 +91,24 @@ pip install -r requirements.txt
 
 ### 4️⃣ Add OpenAI API Key
 
-Create a file:
+Set an environment variable:
 
-```
-utils/config.py
+```bash
+export OPENAI_API_KEY="your_api_key_here"
 ```
 
-```python
-OPENAI_API_KEY = "your_api_key_here"
+On Windows (PowerShell):
+
+```powershell
+$env:OPENAI_API_KEY="your_api_key_here"
 ```
+
+Alternatively, edit `JARVIS_AI/utils/config.py` and set `OPENAI_API_KEY` directly.
 
 ### 5️⃣ Run Jarvis
 
 ```bash
-python main.py
+python JARVIS_AI/main.py
 ```
 
 ---

@@ -1,7 +1,9 @@
+from pathlib import Path
+
+import joblib
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import Pipeline
-import joblib
 
 # Training data
 X = [
@@ -45,6 +47,7 @@ model = Pipeline([
 model.fit(X, y)
 
 # Save model
-joblib.dump(model, "ai/intent_model.pkl")
+MODEL_PATH = Path(__file__).resolve().parent / "intent_model.pkl"
+joblib.dump(model, MODEL_PATH)
 
 print("✅ Intent model trained and saved")

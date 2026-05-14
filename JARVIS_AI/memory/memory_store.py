@@ -1,16 +1,20 @@
 import json
-import os
+from pathlib import Path
 
-MEMORY_FILE = "memory/memory.json"
+MEMORY_FILE = Path(__file__).resolve().parent / "memory.json"
 
 def load_memory():
-    if not os.path.exists(MEMORY_FILE):
+    if not MEMORY_FILE.exists():
         return {}
-    with open(MEMORY_FILE, "r") as f:
-        return json.load(f)
+    try:
+        with MEMORY_FILE.open("r") as f:
+            return json.load(f)
+    except json.JSONDecodeError:
+        return {}
 
 def save_memory(memory):
-    with open(MEMORY_FILE, "w") as f:
+    MEMORY_FILE.parent.mkdir(parents=True, exist_ok=True)
+    with MEMORY_FILE.open("w") as f:
         json.dump(memory, f, indent=4)
 
 def remember(key, value):
