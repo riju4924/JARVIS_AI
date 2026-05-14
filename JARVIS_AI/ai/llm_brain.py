@@ -48,7 +48,7 @@ def ask_llm(user_input: str) -> str:
             temperature=0.6,
         )
     except Exception as exc:
-        LOGGER.exception("Failed to get LLM response", exc_info=exc)
+        LOGGER.exception("Failed to get LLM response")
         return "Sorry, I couldn't get an AI response right now."
 
     return response.choices[0].message.content

@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 
 MEMORY_FILE = Path(__file__).resolve().parent / "memory.json"
+MEMORY_FILE.parent.mkdir(parents=True, exist_ok=True)
 
 def load_memory():
     if not MEMORY_FILE.exists():
@@ -13,8 +14,6 @@ def load_memory():
         return {}
 
 def save_memory(memory):
-    if not MEMORY_FILE.parent.exists():
-        MEMORY_FILE.parent.mkdir(parents=True, exist_ok=True)
     with MEMORY_FILE.open("w") as f:
         json.dump(memory, f, indent=4)
 
