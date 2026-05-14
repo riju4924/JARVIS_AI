@@ -50,8 +50,15 @@ def ask_llm(user_input: str) -> str:
             ],
             temperature=0.6,
         )
-    except Exception:
+    except Exception as exc:
         LOGGER.exception("Failed to get LLM response")
+        error_type = exc.__class__.__name__
+        if error_type == "AuthenticationError":
+            return "OpenAI authentication failed. Please verify your API key."
+        if error_type == "RateLimitError":
+            return "OpenAI rate limit reached. Please try again later."
+        if error_type in {"APIConnectionError", "APITimeoutError"}:
+            return "Network error while contacting OpenAI. Please check your connection."
         return (
             "Sorry, I couldn't get an AI response right now. "
             "Please check your API key, network connection, or logs for details."

@@ -103,7 +103,7 @@ On Windows (PowerShell):
 $env:OPENAI_API_KEY="your_api_key_here"
 ```
 
-Alternatively, edit `JARVIS_AI/utils/config.py` and set `OPENAI_API_KEY` directly.
+Alternatively, create `JARVIS_AI/utils/config.py` (if it doesn't exist) and set `OPENAI_API_KEY` directly.
 
 ### 5️⃣ Run Jarvis
 
