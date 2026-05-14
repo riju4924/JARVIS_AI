@@ -111,6 +111,12 @@ Alternatively, edit `JARVIS_AI/utils/config.py` and set `OPENAI_API_KEY` directl
 python JARVIS_AI/main.py
 ```
 
+If you are already inside the `JARVIS_AI/` directory, run:
+
+```bash
+python main.py
+```
+
 ---
 
 ## 🎤 Example Voice Commands
