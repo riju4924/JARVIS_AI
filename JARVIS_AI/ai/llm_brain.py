@@ -7,7 +7,16 @@ try:
 except (ImportError, AttributeError):
     CONFIG_API_KEY = ""
 
-OPENAI_API_KEY = (os.getenv("OPENAI_API_KEY") or CONFIG_API_KEY).strip()
+def _resolve_api_key():
+    env_key = os.getenv("OPENAI_API_KEY")
+    if env_key and env_key.strip():
+        return env_key.strip()
+    if CONFIG_API_KEY and CONFIG_API_KEY.strip():
+        return CONFIG_API_KEY.strip()
+    return ""
+
+
+OPENAI_API_KEY = _resolve_api_key()
 _CLIENT = None
 
 
@@ -37,7 +46,7 @@ def ask_llm(user_input: str) -> str:
             temperature=0.6,
         )
     except Exception as exc:
-        print(f"⚠️ LLM error: {exc}")
-        return "Sorry, I couldn't reach the AI service right now."
+        print(f"⚠️ Failed to get LLM response: {exc}")
+        return "Sorry, I couldn't get an AI response right now."
 
     return response.choices[0].message.content

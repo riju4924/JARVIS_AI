@@ -13,7 +13,8 @@ def load_memory():
         return {}
 
 def save_memory(memory):
-    MEMORY_FILE.parent.mkdir(parents=True, exist_ok=True)
+    if not MEMORY_FILE.parent.exists():
+        MEMORY_FILE.parent.mkdir(parents=True, exist_ok=True)
     with MEMORY_FILE.open("w") as f:
         json.dump(memory, f, indent=4)
 
