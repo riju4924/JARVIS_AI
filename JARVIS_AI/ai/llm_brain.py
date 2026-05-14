@@ -28,7 +28,8 @@ def ask_llm(user_input: str) -> str:
             ],
             temperature=0.6,
         )
-    except Exception:
+    except Exception as exc:
+        print(f"⚠️ LLM error: {exc}")
         return "Sorry, I couldn't reach the AI service right now."
 
     return response.choices[0].message.content
