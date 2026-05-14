@@ -5,7 +5,7 @@ MODEL_PATH = Path(__file__).resolve().parent / "intent_model.pkl"
 
 if not MODEL_PATH.exists():
     raise FileNotFoundError(
-        "Intent model not found. Run JARVIS_AI/ai/train_intent_model.py to generate intent_model.pkl."
+        "Intent model not found. Run train_intent_model.py in the ai directory to generate intent_model.pkl."
     )
 
 model = joblib.load(MODEL_PATH)

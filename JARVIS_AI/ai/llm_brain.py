@@ -35,7 +35,10 @@ Be concise, friendly, and clear.
 
 def ask_llm(user_input: str) -> str:
     if not OPENAI_API_KEY:
-        return "OpenAI API key is not configured. Set OPENAI_API_KEY before using LLM features."
+        return (
+            "OpenAI API key is not configured. Set OPENAI_API_KEY in your environment "
+            "or utils/config.py to use LLM features."
+        )
 
     try:
         client = _get_client()
@@ -49,6 +52,9 @@ def ask_llm(user_input: str) -> str:
         )
     except Exception as exc:
         LOGGER.exception("Failed to get LLM response")
-        return "Sorry, I couldn't get an AI response right now."
+        return (
+            "Sorry, I couldn't get an AI response right now. "
+            "Please check your API key, network connection, or logs for details."
+        )
 
     return response.choices[0].message.content
